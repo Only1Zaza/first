@@ -1,0 +1,9 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+passport.alibaba.com	TRUE	/	FALSE	1999999999	XSRF-TOKEN	868e990d-cbf1-43a3-b515-857ce9541366
+.alibaba.com	TRUE	/	FALSE	1999999999	_samesite_flag_	true
+.alibaba.com	TRUE	/	FALSE	1999999999	cookie2	a0542f0822b827947d1870b227d96914
+.alibaba.com	TRUE	/	FALSE	1999999999	t	66845a2d351e1777424c49645f140600
+.alibaba.com	TRUE	/	FALSE	1999999999	xman_t	iy/EQZvXh8uTa8qiFr9iDqmXn4MDQxq+Ln3p3jLQQoqtWx8aum2ovrh8hFZ8diVDikDQF88R+tE=
+.alibaba.com	TRUE	/	FALSE	1999999999	_tb_token_	e66196e376ee5
+
